@@ -1,0 +1,17 @@
+name: Autotest
+
+on:
+  workflow_dispatch:    # 支持手动和远程触发
+  repository_dispatch:  # 支持外部仓库触发
+
+jobs:
+  autotest:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - name: 安装依赖
+        run: |
+          pip install -r requirements.txt
+      - name: 运行测试
+        run: |
+          pytest
